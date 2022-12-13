@@ -1,0 +1,19 @@
+psicologos 
+id primarykey auto_increment integer
+nome string
+email string
+senha string
+apresencao string
+
+
+pacientes
+id primary key auto_increment integer
+nome string
+email string
+idade date
+
+
+atendimentos
+paciente_id inteiro (integer)
+data_atendimento date
+observacao string 
