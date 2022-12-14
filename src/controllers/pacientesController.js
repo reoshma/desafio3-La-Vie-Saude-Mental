@@ -1,4 +1,4 @@
-const { Pacientes}  = require("../models");
+const { Pacientes }  = require("../models");
 
 const pacientesController = {
   listarPaciente: async (req, res) => {
@@ -7,11 +7,11 @@ const pacientesController = {
     res.json(listaDePacientes);
   },
   async listarPacienteID (req, res) {
-    const { id } = req.params;
+    const { id_paciente } = req.params;
 
     const listarUmPaciente = await Pacientes.findOne({
       where: {
-        id_paciente:id,
+        id_paciente:id_paciente,
       },
     });
     res.json(listarUmPaciente);
@@ -35,13 +35,13 @@ const pacientesController = {
   },
   
   async deletarPaciente(req, res) {
-    const { id } = req.params;
+    const { id_paciente } = req.params;
 
-    if (!id) return res.status(404).json("id não encontrado");
+    if (!id_paciente) return res.status(404).json("id não encontrado");
 
     await Pacientes.destroy({
       where: {
-        id_paciente:id,
+        id_paciente:id_paciente,
       },
     });
 
@@ -49,7 +49,7 @@ const pacientesController = {
   },
 
   async atualizarPaciente(req, res) {
-    const { id } = req.params;
+    const { id_paciente } = req.params;
     const { nome, email, idade } = req.body;
 
     const pacienteAtualizado = await Pacientes.update(
@@ -60,7 +60,7 @@ const pacientesController = {
       },
       {
         where: {
-          id_paciente:id,
+          id_paciente:id_paciente,
         },
       }
     );
