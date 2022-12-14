@@ -19,7 +19,7 @@ routes.delete("/pacientes/:id", pacientesController.deletarPaciente);
 routes.put("/pacientes/:id", pacienteCreateValidation, pacientesController.atualizarPaciente);
 
 routes.get("/psicologos", psicologosController.listarPsicologo);
-routes.get("/psicologos/:id", psicologosController.listarPsicologoID);
+routes.get("/psicologos/:id_psicologo", psicologosController.listarPsicologoID);
 routes.post("/psicologos", usuarioCreateValidation, psicologosController.cadastrarPsicologo);
 routes.delete("/psicologos/:id_psicologo", psicologosController.deletarPsicologo);
 routes.put("/psicologos/:id_psicologo", usuarioCreateValidation, psicologosController.atualizarPsicologo);

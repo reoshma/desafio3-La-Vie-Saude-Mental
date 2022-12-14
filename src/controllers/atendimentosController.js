@@ -3,27 +3,42 @@ const { Atendimentos, Psicologos, Pacientes } = require("../models");
 const atendimentosController = {
   listarAtendimento: async (req, res) => {
     const listaDeAtendimentos = await Atendimentos.findAll({
-      include: Pacientes
+      // include: [
+      //   {
+      //     model: Pacientes
+      //   },
+      //   {
+      //     model: Psicologos
+      //   },
+      // ]
     });
 
     res.json(listaDeAtendimentos);
   },
 
-  async listarAtendimentoID (req, res) {
+  async listarAtendimentoID(req, res) {
     const { id } = req.params;
 
     const listarUmAtendimento = await Atendimentos.findOne({
       where: {
         id,
       },
+      // include: [
+      //   {
+      //     model: Pacientes
+      //   },
+      //   {
+      //     model: Psicologos
+      //   },
+      // ]
     });
     res.json(listarUmAtendimento);
   },
 
   async cadastrarAtendimento(req, res) {
     console.log(req.user);
-    try {  
-    const { data_atendimento, observacao, psicologos_id, pacientes_id } = req.body;
+    try {
+      const { data_atendimento, observacao, psicologos_id, pacientes_id } = req.body;
 
       const novoAtendimento = await Atendimentos.create({
         data_atendimento,
@@ -38,7 +53,7 @@ const atendimentosController = {
         .json("Erro ao tentar processar, contate o suporte");
     }
   },
-  
+
 };
 
 module.exports = atendimentosController;

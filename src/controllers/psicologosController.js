@@ -8,14 +8,11 @@ const PsicologosController = {
     res.json(listaDePsicologos);
   },
 
-  async listarPsicologoID (req, res) {
+  async listarPsicologoID(req, res) {
     const { id_psicologo } = req.params;
 
-    const listarUmPsicologo = await Psicologos.findOne({
-      where: {
-        id_psicologo,
-      },
-    });
+    const listarUmPsicologo = await Psicologos.findByPk(id_psicologo);
+
     res.json(listarUmPsicologo);
   },
 
@@ -31,7 +28,7 @@ const PsicologosController = {
 
   async deletarPsicologo(req, res) {
     const { id_psicologo } = req.params;
-    
+
     if (!id_psicologo) return res.status(404).json("id não encontrado");
 
     await Psicologos.destroy({
