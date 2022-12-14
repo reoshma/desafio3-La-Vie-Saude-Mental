@@ -1,5 +1,4 @@
-const { Pacientes } = require("../models/pacientes");
-const bcrypt = require("bcryptjs");
+const { Pacientes}  = require("../models");
 
 const pacientesController = {
   listarPaciente: async (req, res) => {
@@ -10,17 +9,22 @@ const pacientesController = {
   },
 
   async cadastrarPaciente(req, res) {
-    const { nome, email, idade } = req.body;
+    try {  
+    const { name, email, idade } = req.body;
 
-    const novoPaciente = await Pacientes.create({
-      nome,
-      email,
-      idade,
-    });
-
-    res.json(novoPaciente);
+      const novoPaciente = await Pacientes.create({
+        name,
+        email,
+        idade
+      });
+      res.status(201).json(novoPaciente);
+    } catch (err) {
+      return res
+        .status(500)
+        .json("Erro ao tentar processar, contate o suporte");
+    }
   },
-
+  
   async deletarPaciente(req, res) {
     const { id } = req.params;
 
@@ -35,11 +39,11 @@ const pacientesController = {
 
   async atualizarPaciente(req, res) {
     const { id } = req.params;
-    const { nome, email, idade } = req.body;
+    const { name, email, idade } = req.body;
 
     const pacienteAtualizado = await Pacientes.update(
       {
-        nome,
+        name,
         email,
         idade,
       },

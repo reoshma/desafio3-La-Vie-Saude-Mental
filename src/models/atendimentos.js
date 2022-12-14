@@ -1,8 +1,10 @@
-const db = require("../database");
+const db = require("../database/connection");
 const { DataTypes } = require("sequelize");
+const Psicologos = require("./psicologos");
+const Pacientes = require("./pacientes");
 
 const Atendimentos = db.define(
-  "Atendimentos",
+  "atendimentos",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -17,20 +19,23 @@ const Atendimentos = db.define(
     },
     psicologos_id: {
       type: DataTypes.INTEGER,
+      references: {
+        model: Psicologos,
+        key: 'id'
+      }
     },
     pacientes_id: {
-        type: DataTypes.INTEGER,
-      },
-    createdAt: {
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-    },
+      type: DataTypes.INTEGER,
+      references: {
+        model: Pacientes,
+        key: 'id'
+      }
+    }
   },
-  {
-    tableName: "atendimentos",
-  }
+{
+  tableName: "atendimentos",
+    timestamps: false
+}
 );
 
 module.exports = Atendimentos;

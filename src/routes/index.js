@@ -17,15 +17,15 @@ routes.post("/pacientes", pacientesController.cadastrarPaciente);
 routes.delete("/pacientes/:id", pacientesController.deletarPaciente);
 routes.put("/pacientes/:id", pacientesController.atualizarPaciente);
 
-routes.get("/psicologos");
-routes.post("/psicologos", psicologosController.registro);
-routes.delete("/psicologos/:id",);
-routes.put("/psicologos/:id",);
+routes.get("/psicologos", psicologosController.listarPsicologo);
+routes.post("/psicologos", psicologosController.cadastrarPsicologo);
+routes.delete("/psicologos/:id", psicologosController.deletarPsicologo);
+routes.put("/psicologos/:id", psicologosController.atualizarPsicologo);
 
-routes.get("/atendimentos");
-routes.post("/atendimentos");
-routes.delete("/atendimentos/:id",);
-routes.put("/atendimentos/:id",);
+routes.get("/atendimentos", atendimentosController.listarAtendimento);
+routes.post("/atendimentos", atendimentosController.cadastrarAtendimento);
+routes.delete("/atendimentos/:id", atendimentosController.deletarAtendimento);
+routes.put("/atendimentos/:id", atendimentosController.atualizarAtendimento);
 
 //routes.post("/usuarios", usuarioCreateValidation, usuariosController.registro);
 //routes.post("/login", authLoginValidation, authController.login);
