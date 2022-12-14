@@ -8,6 +8,17 @@ const PsicologosController = {
     res.json(listaDePsicologos);
   },
 
+  async listarPsicologoID (req, res) {
+    const { id_psicologo } = req.params;
+
+    const listarUmPsicologo = await Psicologos.findOne({
+      where: {
+        id_psicologo,
+      },
+    });
+    res.json(listarUmPsicologo);
+  },
+
   async cadastrarPsicologo(req, res) {
     const { nome, email, senha, apresentacao } = req.body;
 
@@ -19,19 +30,20 @@ const PsicologosController = {
   },
 
   async deletarPsicologo(req, res) {
-    const { id } = req.params;
+    const { id_psicologo } = req.params;
+    
+    if (!id_psicologo) return res.status(404).json("id não encontrado");
 
     await Psicologos.destroy({
       where: {
-        id,
+        id_psicologo,
       },
     });
-
     res.json("Psicologo Deletado");
   },
 
   async atualizarPsicologo(req, res) {
-    const { id } = req.params;
+    const { id_psicologo } = req.params;
     const { nome, email, senha, apresentacao } = req.body;
 
     const psicologoAtualizado = await Psicologos.update(
@@ -43,7 +55,7 @@ const PsicologosController = {
       },
       {
         where: {
-          id,
+          id_psicologo,
         },
       }
     );

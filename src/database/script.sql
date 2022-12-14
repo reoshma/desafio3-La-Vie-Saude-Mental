@@ -21,8 +21,8 @@ USE `mydb` ;
 -- Table `mydb`.`pacientes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`pacientes` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) NULL,
+  `id_paciente` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(50) NULL,
   `email` VARCHAR(45) NULL,
   `idade` DATE NULL,
   PRIMARY KEY (`id`))
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`psicologos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`psicologos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_psicologo` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(50) NULL,
   `email` VARCHAR(45) NULL,
   `senha` VARCHAR(20) NULL,
@@ -49,18 +49,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`atendimentos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `data_atendimento` DATE NULL,
   `observacao` TEXT NULL,
-  `psicologos_id` INT NOT NULL,
-  `pacientes_id` INT NOT NULL,
+  `id_psicologo` INT NOT NULL,
+  `id_paciente` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_atendimentos_psicologos_idx` (`psicologos_id` ASC) VISIBLE,
-  INDEX `fk_atendimentos_pacientes1_idx` (`pacientes_id` ASC) VISIBLE,
-  CONSTRAINT `fk_atendimentos_psicologos`
-    FOREIGN KEY (`psicologos_id`)
+  INDEX `fk_atendimentos_psicologos_idx` (`id_psicologo` ASC) VISIBLE,
+  INDEX `fk_atendimentos_pacientes1_idx` (`id_paciente` ASC) VISIBLE,
+  CONSTRAINT `id_psicologo`
+    FOREIGN KEY (`id_psicologo`)
     REFERENCES `mydb`.`psicologos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_atendimentos_pacientes1`
-    FOREIGN KEY (`pacientes_id`)
+  CONSTRAINT `id_paciente`
+    FOREIGN KEY (`id_paciente`)
     REFERENCES `mydb`.`pacientes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

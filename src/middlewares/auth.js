@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(401).json({ message: "O token não especificado" });
+    return res.status(401).json({ message: "Token não especificado" });
   }
   ("Bearer token");
 
@@ -27,6 +27,6 @@ module.exports = (req, res, next) => {
   } catch (e) {
     return res
       .status(401)
-      .json({ message: "Token invalido! Faça login novamente!" });
+      .json({ message: "Token inválido! Faça login novamente!" });
   }
 };

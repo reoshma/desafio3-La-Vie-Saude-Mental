@@ -4,16 +4,25 @@ const pacientesController = {
   listarPaciente: async (req, res) => {
     const listaDePacientes = await Pacientes.findAll({
     });
-
     res.json(listaDePacientes);
+  },
+  async listarPacienteID (req, res) {
+    const { id } = req.params;
+
+    const listarUmPaciente = await Pacientes.findOne({
+      where: {
+        id_paciente:id,
+      },
+    });
+    res.json(listarUmPaciente);
   },
 
   async cadastrarPaciente(req, res) {
     try {  
-    const { name, email, idade } = req.body;
+    const { nome, email, idade } = req.body;
 
       const novoPaciente = await Pacientes.create({
-        name,
+        nome,
         email,
         idade
       });
@@ -28,9 +37,11 @@ const pacientesController = {
   async deletarPaciente(req, res) {
     const { id } = req.params;
 
+    if (!id) return res.status(404).json("id não encontrado");
+
     await Pacientes.destroy({
       where: {
-        id,
+        id_paciente:id,
       },
     });
 
@@ -39,17 +50,17 @@ const pacientesController = {
 
   async atualizarPaciente(req, res) {
     const { id } = req.params;
-    const { name, email, idade } = req.body;
+    const { nome, email, idade } = req.body;
 
     const pacienteAtualizado = await Pacientes.update(
       {
-        name,
+        nome,
         email,
         idade,
       },
       {
         where: {
-          id,
+          id_paciente:id,
         },
       }
     );

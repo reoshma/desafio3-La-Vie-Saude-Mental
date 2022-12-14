@@ -1,15 +1,16 @@
 const db = require("../database/connection");
 const { DataTypes } = require("sequelize");
+const Atendimentos = require('./atendimentos')
 
 const Pacientes = db.define(
   "pacientes",
   {
-    id: {
+    id_paciente: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    nome: {
       type: DataTypes.STRING,
     },
     email: {
