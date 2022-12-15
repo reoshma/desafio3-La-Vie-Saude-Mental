@@ -14,7 +14,7 @@ const AuthController = {
     });
 
     if (!usuario) {
-      return res.status(400).json("E-mail ou senha inválido, verifique e tente novamente”");
+      return res.status(400).json("E-mail não cadastrado!”");
     }
 
     if (!bcrypt.compareSync(senha, usuario.senha)) {
@@ -23,7 +23,7 @@ const AuthController = {
 
     const token = jwt.sign(
       {
-        id: usuario.id,
+        id: usuario.id_psicologo,
         email: usuario.email,
         nome: usuario.nome,
         userType: 'user'
@@ -31,7 +31,7 @@ const AuthController = {
       secret.key
     );
 
-    return res.json(token);
+    return res.status(200).json(token);
   },
 };
 

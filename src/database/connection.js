@@ -2,14 +2,13 @@ const Sequelize = require("sequelize");
 
 const DB_NAME = "mydb";
 const DB_USER = "root";
-const DB_PASS = "t2p7i7v6#F";
+const DB_PASS = ""; //<---------------- colocar sua senha do MySql
 const DB_CONFIG = {
   dialect: "mysql",
   host: "localhost",
   port: 3306,
 };
 
-// objeto para guardar a conexão do banco dados
 let db = {};
 
 try {
@@ -27,7 +26,6 @@ async function hasConnection() {
   }
 }
 
-// db.hasConection = hasConection
 Object.assign(db, {
   hasConnection,
 });
