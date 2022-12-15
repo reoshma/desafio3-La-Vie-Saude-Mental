@@ -1,6 +1,6 @@
 # desafio3-La-Vie-Saude-Mental
 
-DOCUMENTAÇÃO API -> https://reoshma.github.io/desafio3-La-Vie-Saude-Mental/
+DOCUMENTAÇÃO API -> /docs
 
 
 API – Clínica La Vie - Saúde Mental
